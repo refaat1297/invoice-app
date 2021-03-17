@@ -40,6 +40,24 @@ export default {
         '@nuxtjs/axios',
         // https://go.nuxtjs.dev/pwa
         '@nuxtjs/pwa',
+
+        [
+            '@nuxtjs/firebase',
+            {
+                config: {
+                    apiKey: "AIzaSyCYikEnmTfFCMwavGjyAEF9qD5YLPgCVFw",
+                    authDomain: "a-invoice-app-refaat.firebaseapp.com",
+                    projectId: "a-invoice-app-refaat",
+                    storageBucket: "a-invoice-app-refaat.appspot.com",
+                    messagingSenderId: "145352076169",
+                    appId: "1:145352076169:web:27f30307b035fd070fcf58",
+                    measurementId: "G-EJ5HJZE55X"
+                },
+                services: {
+                    firestore: true,
+                }
+            }
+        ]
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
