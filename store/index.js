@@ -5,7 +5,9 @@ export const state = () => ({
 })
 
 export const getters = {
-
+    invoicesCount (state) {
+        return state.invoices.length
+    }
 }
 
 export const mutations = {
