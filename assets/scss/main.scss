@@ -1,0 +1,31 @@
+/* ----- helpers ----- */
+
+// variables
+@import "helpers/variables";
+
+/* ----- helpers ----- */
+
+
+:root {
+    --main-bg-color: #141625;
+    --main-color: #fff;
+}
+
+
+body, html {
+    font-family: 'Recursive', sans-serif;
+    background: var(--main-bg-color) !important;
+    color: var(--main-color)
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+
+/* ----- pages ----- */
+
+// index
+@import "pages/index";
+
+/* ----- pages ----- */
