@@ -5,7 +5,6 @@
                 <div class="col-12 col-lg-11">
                     <AppInvoicesHead />
 
-
                     <AppInvoiceCard v-for="invoice in invoices" :key="invoice.id" :invoice="invoice" />
                 </div>
             </div>
