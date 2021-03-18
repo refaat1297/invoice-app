@@ -37,5 +37,21 @@ export const actions = {
         } catch (error) {
             console.log(error)
         }
+    },
+    async addNewInvoice ({ state, commit }, payload) {
+        try {
+            await this.$fire.firestore.collection('invoices').add(payload).then(docRef => {
+                const newInvoice = Object.assign({}, payload, {
+                    id: docRef.id
+                })
+
+                commit('UPDATE_INVOICES', [
+                    ...state.invoices,
+                    newInvoice
+                ])
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

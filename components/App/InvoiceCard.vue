@@ -4,7 +4,7 @@
             <span>#</span><span>{{ invoice.id.substring(0, 5) }}...</span>
         </nuxt-link>
         <div class="date">{{ invoice.billTo.invoiceDate.substring(0, 7)}}..</div>
-        <div class="clientName">{{ invoice.billTo.clientName }}</div>
+        <div class="clientName">{{ invoice.billTo.clientName.substring(0, 7) }}..</div>
         <div class="total">$14,800,88</div>
         <div class="status" :class="invoice.status">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
@@ -94,6 +94,7 @@ export default {
         //background-color: rgba(var(--main-color), .3);
         padding: .7rem 1rem;
         border-radius: .5rem;
+        width: 125px;
 
         &.draft {
             background-color: rgba(#fff, .2);
@@ -113,11 +114,12 @@ export default {
         svg {
             width: 20px;
             height: 20px;
+            margin-right: .4rem;
+            display: inline-block;
         }
 
         span {
             text-transform: capitalize;
-            margin-left: .4rem;
         }
     }
 
