@@ -68,7 +68,7 @@ export default {
 
         span {
             &:first-of-type {
-                color: #7E84A8;
+                color: var(--gray-color);
                 font-size: 1.4rem;
                 font-weight: bold;
             }
