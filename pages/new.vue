@@ -240,6 +240,16 @@ export default {
 
             await this.addNewInvoice(this.newInvoice).then(() => {
                 this.loading = false
+
+                this.$notify({
+                    message: "Invoice added successfully..",
+                    type: "success",
+                    top: true,
+                    bottom: false,
+                    left: false,
+                    right: true
+                })
+
                 this.$router.push('/')
             })
         },

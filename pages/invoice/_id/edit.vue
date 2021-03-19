@@ -3,9 +3,6 @@
         <div class="container" >
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-11" v-if="Object.keys(selectedInvoice).length > 0">
-
-                    {{ $store.state.selectedInvoice }}
-
                     <h2 class="invoice-title">
                         edit <span>#</span><span>{{ $route.params.id }}</span>
                     </h2>
@@ -206,7 +203,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 
 export default {
     data() {
@@ -216,21 +213,18 @@ export default {
         }
     },
     async fetch () {
-        // console.log(context)
-        console.log('ss')
-
         await this.$fire.firestore.collection('invoices').doc(this.$route.params.id).get()
             .then(doc => {
-                console.log(doc.data())
                 this.selectedInvoice = doc.data()
             })
+    },
+    computed: {
+        ...mapState(['invoices'])
     },
     methods: {
         ...mapActions(['updateInvoice']),
         async submitForm() {
             this.loading = true
-
-
 
             await this.updateInvoice({
                 id: this.$route.params.id,
@@ -238,13 +232,22 @@ export default {
             }).then(() => {
                 this.loading = false
 
-                this.$store.commit('UPDATE_INVOICES', this.$store.state.invoices.map(item => {
+                this.$store.commit('UPDATE_INVOICES', this.invoices.map(item => {
                     if (item.id === this.$route.params.id) {
                         return Object.assign({}, item, this.selectedInvoice)
                     }
 
                     return  item
                 }))
+
+                this.$notify({
+                    message: "Invoice updated successfully..",
+                    type: "success",
+                    top: true,
+                    bottom: false,
+                    left: false,
+                    right: true
+                })
 
                 this.$router.push('/')
             })
