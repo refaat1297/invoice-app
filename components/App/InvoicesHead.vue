@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .invoices-head {
-    margin-top: 4rem;
+    //margin-top: 4rem;
     margin-bottom: 4rem;
     display: flex;
     justify-content: space-between;

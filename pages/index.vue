@@ -22,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.invoices {
+    padding: 5rem 0;
+}
 </style>

@@ -1,7 +1,7 @@
 import $axios from '@nuxtjs/axios'
 
 export const state = () => ({
-    invoices: []
+    invoices: [],
 })
 
 export const getters = {
@@ -13,7 +13,7 @@ export const getters = {
 export const mutations = {
     UPDATE_INVOICES (state, invoices) {
         state.invoices = invoices
-    }
+    },
 }
 
 export const actions = {
@@ -50,6 +50,13 @@ export const actions = {
                     newInvoice
                 ])
             })
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    async updateInvoice ({ state, commit }, {id, payload}) {
+        try {
+            await this.$fire.firestore.collection('invoices').doc(id).update(payload)
         } catch (error) {
             console.log(error)
         }

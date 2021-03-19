@@ -1,13 +1,13 @@
 <template>
     <div class="new-invoice">
-        <div class="container">
-
-
+        <div class="container" >
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-11">
+                <div class="col-12 col-lg-11" v-if="Object.keys(selectedInvoice).length > 0">
+
+                    {{ $store.state.selectedInvoice }}
 
                     <h2 class="invoice-title">
-                        add <span>new</span> invoice
+                        edit <span>#</span><span>{{ $route.params.id }}</span>
                     </h2>
 
                     <form @submit.prevent="submitForm">
@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_street">Street</label>
                                         <input type="text" class="form-control" id="bill_from_street"
-                                               v-model="newInvoice.billFrom.street">
+                                               v-model="selectedInvoice.billFrom.street">
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_city">city</label>
                                         <input type="text" class="form-control" id="bill_from_city"
-                                               v-model="newInvoice.billFrom.city">
+                                               v-model="selectedInvoice.billFrom.city">
                                     </div>
                                 </div>
 
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_post_code">post code</label>
                                         <input type="text" class="form-control" id="bill_from_post_code"
-                                               v-model="newInvoice.billFrom.postCode">
+                                               v-model="selectedInvoice.billFrom.postCode">
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_country">country</label>
                                         <input type="text" class="form-control" id="bill_from_country"
-                                               v-model="newInvoice.billFrom.country">
+                                               v-model="selectedInvoice.billFrom.country">
                                     </div>
                                 </div>
 
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_client_name">client name</label>
                                         <input type="text" class="form-control" id="bill_to_client_name"
-                                               v-model="newInvoice.billTo.clientName">
+                                               v-model="selectedInvoice.billTo.clientName">
                                     </div>
                                 </div>
 
@@ -68,15 +68,15 @@
                                     <div class="form-group">
                                         <label for="bill_to_client_email">client email</label>
                                         <input type="email" class="form-control" id="bill_to_client_email"
-                                               v-model="newInvoice.billTo.clientEmail">
+                                               v-model="selectedInvoice.billTo.clientEmail">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-lg-4">
                                     <div class="form-group">
                                         <label for="bill_to_street">street</label>
-                                        <input type="email" class="form-control" id="bill_to_street"
-                                               v-model="newInvoice.billTo.street">
+                                        <input type="text" class="form-control" id="bill_to_street"
+                                               v-model="selectedInvoice.billTo.street">
                                     </div>
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_city">city</label>
                                         <input type="text" class="form-control" id="bill_to_city"
-                                               v-model="newInvoice.billTo.city">
+                                               v-model="selectedInvoice.billTo.city">
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_post_code">post code</label>
                                         <input type="text" class="form-control" id="bill_to_post_code"
-                                               v-model="newInvoice.billTo.postCode">
+                                               v-model="selectedInvoice.billTo.postCode">
                                     </div>
                                 </div>
 
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_country">country</label>
                                         <input type="text" class="form-control" id="bill_to_country"
-                                               v-model="newInvoice.billTo.country">
+                                               v-model="selectedInvoice.billTo.country">
                                     </div>
                                 </div>
 
@@ -108,7 +108,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_invoice_date">invoice date</label>
                                         <input type="text" class="form-control" id="bill_to_invoice_date"
-                                               v-model="newInvoice.billTo.invoiceDate">
+                                               v-model="selectedInvoice.billTo.invoiceDate">
                                     </div>
                                 </div>
 
@@ -116,7 +116,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_project_description">project description</label>
                                         <input type="text" class="form-control" id="bill_to_project_description"
-                                               v-model="newInvoice.billTo.projectDescription">
+                                               v-model="selectedInvoice.billTo.projectDescription">
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                         <div class="form-section">
                             <h3>item list</h3>
 
-                            <div class="row align-items-center" v-for="(item,k) in newInvoice.itemList" :key="k">
+                            <div class="row align-items-center" v-for="(item,k) in selectedInvoice.itemList" :key="k">
                                 <div class="col-12 col-md-6 col-lg-5">
                                     <div class="form-group">
                                         <label for="item_name">item name</label>
@@ -152,7 +152,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-2 col-lg text-right">
-                                    <svg @click="deleteItem(k)" v-show="k || ( !k && newInvoice.itemList.length > 1)"
+                                    <svg @click="deleteItem(k)" v-show="k || ( !k && selectedInvoice.itemList.length > 1)"
                                          class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -162,7 +162,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="add-item-btn" @click.prevent="addItem(k)" v-show="k == newInvoice.itemList.length-1">
+                                    <div class="add-item-btn" @click.prevent="addItem(k)" v-show="k == selectedInvoice.itemList.length-1">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                                         <span>Add item</span>
                                     </div>
@@ -173,7 +173,7 @@
                         <div class="form-section">
                             <div class="form-group">
                                 <label for="status">status</label>
-                                <select id="status" v-model="newInvoice.status" class="form-control select">
+                                <select id="status" v-model="selectedInvoice.status" class="form-control select">
                                     <option value="draft">draft</option>
                                     <option value="pending">pending</option>
                                     <option value="paid">paid</option>
@@ -193,6 +193,13 @@
                         </div>
                     </form>
                 </div>
+                <div class="col-12 col-md-4" v-else>
+                    <b-spinner
+                        variant="white"
+                        type="grow"
+                        style="width: 3rem; height: 3rem;"
+                    ></b-spinner>
+                </div>
             </div>
         </div>
     </div>
@@ -204,56 +211,55 @@ import {mapActions} from 'vuex'
 export default {
     data() {
         return {
-            newInvoice: {
-                billFrom: {
-                    street: '',
-                    city: '',
-                    country: '',
-                    postCode: ''
-                },
-                billTo: {
-                    clientEmail: '',
-                    clientName: '',
-                    country: '',
-                    city: '',
-                    invoiceDate: '',
-                    postCode: '',
-                    projectDescription: '',
-                    street: ''
-                },
-                itemList: [
-                    {
-                        name: '',
-                        price: '',
-                        quantity: 1
-                    }
-                ],
-                status: 'draft'
-            },
+            selectedInvoice: {},
             loading: false
         }
     },
+    async fetch () {
+        // console.log(context)
+        console.log('ss')
+
+        await this.$fire.firestore.collection('invoices').doc(this.$route.params.id).get()
+            .then(doc => {
+                console.log(doc.data())
+                this.selectedInvoice = doc.data()
+            })
+    },
     methods: {
-        ...mapActions(['addNewInvoice']),
+        ...mapActions(['updateInvoice']),
         async submitForm() {
             this.loading = true
 
-            await this.addNewInvoice(this.newInvoice).then(() => {
+
+
+            await this.updateInvoice({
+                id: this.$route.params.id,
+                payload: this.selectedInvoice
+            }).then(() => {
                 this.loading = false
+
+                this.$store.commit('UPDATE_INVOICES', this.$store.state.invoices.map(item => {
+                    if (item.id === this.$route.params.id) {
+                        return Object.assign({}, item, this.selectedInvoice)
+                    }
+
+                    return  item
+                }))
+
                 this.$router.push('/')
             })
         },
         addItem() {
-            this.newInvoice.itemList.push({
+            this.selectedInvoice.itemList.push({
                 name: '',
                 price: '',
                 quantity: 1
             });
         },
         deleteItem(index) {
-            this.newInvoice.itemList.splice(index, 1);
+            this.selectedInvoice.itemList.splice(index, 1);
         }
-    }
+    },
 }
 </script>
 
@@ -273,11 +279,17 @@ export default {
         }
 
         span {
-            font-size: 2.1rem;
-            color: var(--gray-color);
+            &:first-of-type {
+                font-size: 2.1rem;
+                color: var(--gray-color);
 
-            @media (max-width: 767px) {
-                font-size: 1.7rem;
+                @media (max-width: 767px) {
+                    font-size: 1.7rem;
+                }
+            }
+
+            &:last-of-type {
+                text-transform: uppercase;
             }
         }
     }
