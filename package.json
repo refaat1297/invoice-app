@@ -18,7 +18,8 @@
     "core-js": "^3.8.3",
     "firebase": "^8.3.0",
     "moment": "^2.29.1",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "fibers": "^5.0.0",
