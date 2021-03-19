@@ -19,6 +19,7 @@
     "firebase": "^8.3.0",
     "moment": "^2.29.1",
     "nuxt": "^2.14.12",
+    "vue2-datepicker": "^3.9.0",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

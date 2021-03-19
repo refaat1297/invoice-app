@@ -107,8 +107,9 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group">
                                         <label for="bill_to_invoice_date">invoice date</label>
-                                        <input type="text" class="form-control" id="bill_to_invoice_date"
-                                               v-model="$v.newInvoice.billTo.invoiceDate.$model">
+                                        <date-picker class="form-control" id="bill_to_invoice_date" v-model="$v.newInvoice.billTo.invoiceDate.$model" valueType="format"></date-picker>
+<!--                                        <input type="text" class="form-control" id="bill_to_invoice_date"-->
+<!--                                               v-model="$v.newInvoice.billTo.invoiceDate.$model">-->
                                     </div>
                                 </div>
 
@@ -356,7 +357,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .new-invoice {
     padding: 5rem 0;
 
@@ -413,6 +414,40 @@ export default {
                     border-color: transparent;
                     height: 50px;
                     border-radius: 7px;
+
+                    &.mx-datepicker {
+                        display: block;
+                        width: 100%;
+                        padding: 0;
+
+                        .mx-input-wrapper {
+                            height: 50px;
+
+                            .mx-input {
+                                height: 50px !important;
+                                background-color: transparent !important;
+                                color: #fff !important;
+                                border-color: transparent;
+
+                                &:focus {
+                                    box-shadow: 0 0 0 transparent;
+                                    border-color: #7C6AD6;
+                                }
+
+                            }
+
+                            i {
+                                svg {
+                                    color: #fff;
+                                    width: 25px;
+                                    height: 25px;
+                                }
+                            }
+                        }
+
+
+                        //background-color: transparent;
+                    }
 
                     &.disabled {
                         background-color: transparent;

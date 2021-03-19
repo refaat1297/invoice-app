@@ -26,6 +26,7 @@ export default {
         '~/plugins/getInvoices.server.js',
         '~/plugins/notification.js',
         '~/plugins/vuelidate.js',
+        '~/plugins/vue2-datepicker.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
