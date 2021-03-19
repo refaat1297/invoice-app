@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_street">Street</label>
                                         <input type="text" class="form-control" id="bill_from_street"
-                                               v-model="newInvoice.billFrom.street">
+                                               v-model="$v.newInvoice.billFrom.street.$model">
                                     </div>
                                 </div>
 
@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_city">city</label>
                                         <input type="text" class="form-control" id="bill_from_city"
-                                               v-model="newInvoice.billFrom.city">
+                                               v-model="$v.newInvoice.billFrom.city.$model">
                                     </div>
                                 </div>
 
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_post_code">post code</label>
                                         <input type="text" class="form-control" id="bill_from_post_code"
-                                               v-model="newInvoice.billFrom.postCode">
+                                               v-model="$v.newInvoice.billFrom.postCode.$model">
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="bill_from_country">country</label>
                                         <input type="text" class="form-control" id="bill_from_country"
-                                               v-model="newInvoice.billFrom.country">
+                                               v-model="$v.newInvoice.billFrom.country.$model">
                                     </div>
                                 </div>
 
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_client_name">client name</label>
                                         <input type="text" class="form-control" id="bill_to_client_name"
-                                               v-model="newInvoice.billTo.clientName">
+                                               v-model="$v.newInvoice.billTo.clientName.$model">
                                     </div>
                                 </div>
 
@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_client_email">client email</label>
                                         <input type="email" class="form-control" id="bill_to_client_email"
-                                               v-model="newInvoice.billTo.clientEmail">
+                                               v-model="$v.newInvoice.billTo.clientEmail.$model">
                                     </div>
                                 </div>
 
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_street">street</label>
                                         <input type="email" class="form-control" id="bill_to_street"
-                                               v-model="newInvoice.billTo.street">
+                                               v-model="$v.newInvoice.billTo.street.$model">
                                     </div>
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_city">city</label>
                                         <input type="text" class="form-control" id="bill_to_city"
-                                               v-model="newInvoice.billTo.city">
+                                               v-model="$v.newInvoice.billTo.city.$model">
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_post_code">post code</label>
                                         <input type="text" class="form-control" id="bill_to_post_code"
-                                               v-model="newInvoice.billTo.postCode">
+                                               v-model="$v.newInvoice.billTo.postCode.$model">
                                     </div>
                                 </div>
 
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_country">country</label>
                                         <input type="text" class="form-control" id="bill_to_country"
-                                               v-model="newInvoice.billTo.country">
+                                               v-model="$v.newInvoice.billTo.country.$model">
                                     </div>
                                 </div>
 
@@ -108,7 +108,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_invoice_date">invoice date</label>
                                         <input type="text" class="form-control" id="bill_to_invoice_date"
-                                               v-model="newInvoice.billTo.invoiceDate">
+                                               v-model="$v.newInvoice.billTo.invoiceDate.$model">
                                     </div>
                                 </div>
 
@@ -116,7 +116,7 @@
                                     <div class="form-group">
                                         <label for="bill_to_project_description">project description</label>
                                         <input type="text" class="form-control" id="bill_to_project_description"
-                                               v-model="newInvoice.billTo.projectDescription">
+                                               v-model="$v.newInvoice.billTo.projectDescription.$model">
                                     </div>
                                 </div>
                             </div>
@@ -125,30 +125,30 @@
                         <div class="form-section">
                             <h3>item list</h3>
 
-                            <div class="row align-items-center" v-for="(item,k) in newInvoice.itemList" :key="k">
+                            <div class="row align-items-center" v-for="(item,k) in $v.newInvoice.itemList.$each.$iter" :key="k">
                                 <div class="col-12 col-md-6 col-lg-5">
                                     <div class="form-group">
                                         <label for="item_name">item name</label>
-                                        <input type="text" class="form-control" id="item_name" v-model="item.name"/>
+                                        <input type="text" class="form-control" id="item_name" v-model="item.name.$model"/>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-2">
                                     <div class="form-group">
                                         <label for="item_quantity">Qty.</label>
                                         <input type="text" class="form-control" id="item_quantity"
-                                               v-model="item.quantity"/>
+                                               v-model="item.quantity.$model"/>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-2">
                                     <div class="form-group">
                                         <label for="item_price">price</label>
-                                        <input type="text" class="form-control" id="item_price" v-model="item.price"/>
+                                        <input type="text" class="form-control" id="item_price" v-model="item.price.$model"/>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="form-group">
                                         <label for="item_total">total</label>
-                                        <input type="text" disabled class="form-control disabled" id="item_total" :value="(item.price * item.quantity).toFixed(2)"/>
+                                        <input type="text" disabled class="form-control disabled" id="item_total" :value="(item.price.$model* item.quantity.$model) ? (item.price.$model* item.quantity.$model).toFixed(2) : 0.00"/>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-2 col-lg text-right">
@@ -173,7 +173,7 @@
                         <div class="form-section">
                             <div class="form-group">
                                 <label for="status">status</label>
-                                <select id="status" v-model="newInvoice.status" class="form-control select">
+                                <select id="status" v-model="$v.newInvoice.status.$model" class="form-control select">
                                     <option value="draft">draft</option>
                                     <option value="pending">pending</option>
                                     <option value="paid">paid</option>
@@ -200,6 +200,7 @@
 
 <script>
 import {mapActions} from 'vuex'
+import {integer, required} from "vuelidate/lib/validators";
 
 export default {
     data() {
@@ -233,25 +234,113 @@ export default {
             loading: false
         }
     },
+    validations: {
+        newInvoice: {
+            billFrom: {
+                street: {
+                    required
+                },
+                city: {
+                    required
+                },
+                postCode: {
+                    required
+                },
+                country: {
+                    required
+                },
+            },
+            billTo: {
+                clientName: {
+                    required
+                },
+                clientEmail: {
+                    required
+                },
+                invoiceDate: {
+                    required
+                },
+                projectDescription: {
+                    required
+                },
+                street: {
+                    required
+                },
+                city: {
+                    required
+                },
+                postCode: {
+                    required
+                },
+                country: {
+                    required
+                },
+            },
+            itemList: {
+                $each: {
+                    name: {
+                        required,
+                    },
+                    quantity: {
+                        required,
+                        integer
+                    },
+                    price: {
+                        required,
+                        integer
+                    }
+                }
+            },
+            status: {
+                required
+            }
+        }
+    },
     methods: {
         ...mapActions(['addNewInvoice']),
         async submitForm() {
-            this.loading = true
 
-            await this.addNewInvoice(this.newInvoice).then(() => {
-                this.loading = false
-
+            if (this.$v.newInvoice.$invalid) {
                 this.$notify({
-                    message: "Invoice added successfully..",
-                    type: "success",
+                    message: "Please fill in all inputs",
+                    type: "error",
                     top: true,
                     bottom: false,
                     left: false,
-                    right: true
+                    right: true,
+                    closeDelay: 3000
+                })
+                this.$notify({
+                    message: "Note: Price and Quantity inputs must be number..",
+                    type: "info",
+                    top: true,
+                    bottom: false,
+                    left: false,
+                    right: true,
+                    closeDelay: 6000,
+                    offset: 40,
                 })
 
-                this.$router.push('/')
-            })
+            } else {
+                this.loading = true
+
+                await this.addNewInvoice(this.newInvoice).then(() => {
+                    this.loading = false
+
+                    this.$notify({
+                        message: "Invoice added successfully..",
+                        type: "success",
+                        top: true,
+                        bottom: false,
+                        left: false,
+                        right: true
+                    })
+
+                    this.$router.push('/')
+                })
+            }
+
+
         },
         addItem() {
             this.newInvoice.itemList.push({

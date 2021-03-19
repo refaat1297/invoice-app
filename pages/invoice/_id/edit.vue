@@ -174,7 +174,7 @@
                         <div class="form-section">
                             <div class="form-group">
                                 <label for="status">status</label>
-                                <select id="status" v-model="selectedInvoice.status" class="form-control select">
+                                <select id="status" v-model="$v.selectedInvoice.status.$model" class="form-control select">
                                     <option value="draft">draft</option>
                                     <option value="pending">pending</option>
                                     <option value="paid">paid</option>
