@@ -3,7 +3,7 @@
         <nuxt-link :to="`/invoice/${invoice.id}/edit`" class="id">
             <span>#</span><span>{{ invoice.id.substring(0, 5) }}...</span>
         </nuxt-link>
-        <div class="date">{{ invoice.billTo.invoiceDate.substring(0, 7)}}..</div>
+        <div class="date">{{ $moment(invoice.billTo.invoiceDate).format('ll').substring(0, 7) }}..</div>
         <div class="clientName">{{ invoice.billTo.clientName.substring(0, 7) }}..</div>
         <div class="total">$14,800,88</div>
         <div class="status" :class="invoice.status">

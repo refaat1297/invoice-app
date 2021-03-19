@@ -60,5 +60,15 @@ export const actions = {
         } catch (error) {
             console.log(error)
         }
+    },
+    async deleteInvoice ({ state, commit }, id) {
+        try {
+            await this.$fire.firestore.collection('invoices').doc(id).delete()
+                .then(res => {
+                    commit('UPDATE_INVOICES', state.invoices.filter(invoice => invoice.id !== id))
+                })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

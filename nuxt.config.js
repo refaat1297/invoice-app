@@ -27,6 +27,7 @@ export default {
         '~/plugins/notification.js',
         '~/plugins/vuelidate.js',
         '~/plugins/vue2-datepicker.js',
+        // '~/plugins/moment.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,6 +44,7 @@ export default {
         '@nuxtjs/axios',
         // https://go.nuxtjs.dev/pwa
         '@nuxtjs/pwa',
+        '@nuxtjs/moment',
 
         [
             '@nuxtjs/firebase',

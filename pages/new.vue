@@ -75,7 +75,7 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="form-group">
                                         <label for="bill_to_street">street</label>
-                                        <input type="email" class="form-control" id="bill_to_street"
+                                        <input type="text" class="form-control" id="bill_to_street"
                                                v-model="$v.newInvoice.billTo.street.$model">
                                     </div>
                                 </div>

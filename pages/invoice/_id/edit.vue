@@ -358,7 +358,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .new-invoice {
     padding: 5rem 0;
 
