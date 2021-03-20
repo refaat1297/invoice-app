@@ -220,9 +220,9 @@ export default {
         }
     },
     async fetch () {
-        await this.$fire.firestore.collection('invoices').doc(this.$route.params.id).get()
-            .then(doc => {
-                this.selectedInvoice = doc.data()
+        await this.$axios.$get(`https://a-invoice-app-refaat-default-rtdb.firebaseio.com/invoices/${this.$route.params.id}.json`)
+            .then(response => {
+                this.selectedInvoice = response
             })
     },
     validations: {

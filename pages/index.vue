@@ -16,6 +16,9 @@
 import {mapState} from 'vuex'
 
 export default {
+    async asyncData ({ app }) {
+        await app.store.dispatch('getInvoicesData')
+    },
     computed: {
         ...mapState(['invoices'])
     }

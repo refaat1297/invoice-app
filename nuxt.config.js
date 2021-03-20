@@ -1,3 +1,8 @@
+// import $fire from '@nuxtjs/firebase'
+import axios from 'axios'
+
+
+
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
@@ -23,7 +28,9 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        '~/plugins/getInvoices.server.js',
+
+        // '~/plugins/getInvoices.js',
+        // '~/plugins/firebase.js',
         '~/plugins/notification.js',
         '~/plugins/vuelidate.js',
         '~/plugins/vue2-datepicker.js',
@@ -46,23 +53,23 @@ export default {
         '@nuxtjs/pwa',
         '@nuxtjs/moment',
 
-        [
-            '@nuxtjs/firebase',
-            {
-                config: {
-                    apiKey: "AIzaSyCYikEnmTfFCMwavGjyAEF9qD5YLPgCVFw",
-                    authDomain: "a-invoice-app-refaat.firebaseapp.com",
-                    projectId: "a-invoice-app-refaat",
-                    storageBucket: "a-invoice-app-refaat.appspot.com",
-                    messagingSenderId: "145352076169",
-                    appId: "1:145352076169:web:27f30307b035fd070fcf58",
-                    measurementId: "G-EJ5HJZE55X"
-                },
-                services: {
-                    firestore: true,
-                }
-            }
-        ]
+        // [
+        //     '@nuxtjs/firebase',
+        //     {
+        //         config: {
+        //             apiKey: "AIzaSyCYikEnmTfFCMwavGjyAEF9qD5YLPgCVFw",
+        //             authDomain: "a-invoice-app-refaat.firebaseapp.com",
+        //             projectId: "a-invoice-app-refaat",
+        //             storageBucket: "a-invoice-app-refaat.appspot.com",
+        //             messagingSenderId: "145352076169",
+        //             appId: "1:145352076169:web:27f30307b035fd070fcf58",
+        //             measurementId: "G-EJ5HJZE55X"
+        //         },
+        //         services: {
+        //             firestore: true,
+        //         }
+        //     }
+        // ]
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -77,6 +84,23 @@ export default {
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
+
+    generate: {
+        routes () {
+            return axios.get('https://a-invoice-app-refaat-default-rtdb.firebaseio.com/invoices.json')
+                .then(res => {
+                    const routes = []
+
+                    for (const id in res.data) {
+                        routes.push(`/invoice/${id}`)
+                        routes.push(`/invoice/${id}/edit`)
+                    }
+
+                    return routes
+                })
+        }
+    },
+
 
     pageTransition: 'page'
 }
