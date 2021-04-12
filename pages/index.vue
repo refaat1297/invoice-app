@@ -2,7 +2,7 @@
     <section class="invoices">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-11">
+                <div class="col-12 col-lg-11" data-test="0">
                     <AppInvoicesHead />
 
                     <AppInvoiceCard v-for="invoice in invoices" :key="invoice.id" :invoice="invoice" />
