@@ -5,7 +5,7 @@
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
-    target: 'universal',
+    // target: 'universal',
 
     ssr: true,
     // Global page headers: https://go.nuxtjs.dev/config-head
